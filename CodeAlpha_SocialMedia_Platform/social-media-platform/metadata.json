@@ -1,0 +1,6 @@
+{
+  "name": "Social Media Platform",
+  "description": "A mini social media application featuring user profiles, posts, comments, likes, and a following system with an Express.js backend.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

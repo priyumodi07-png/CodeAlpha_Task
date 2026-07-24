@@ -1,0 +1,88 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "A user profile persona on Verve",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "username": { "type": "string" },
+        "displayName": { "type": "string" },
+        "bio": { "type": "string" },
+        "avatar": { "type": "string" },
+        "joinedAt": { "type": "string" }
+      },
+      "required": ["id", "username", "displayName", "avatar", "joinedAt"]
+    },
+    "Post": {
+      "title": "Post",
+      "description": "A timeline post containing text and optional image",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "content": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "likesCount": { "type": "number" },
+        "commentsCount": { "type": "number" }
+      },
+      "required": ["id", "userId", "content", "createdAt", "likesCount", "commentsCount"]
+    },
+    "Comment": {
+      "title": "Comment",
+      "description": "A comment on a timeline post",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "postId": { "type": "string" },
+        "userId": { "type": "string" },
+        "content": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "postId", "userId", "content", "createdAt"]
+    },
+    "Like": {
+      "title": "Like",
+      "description": "A record representing that a user liked a post",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "createdAt"]
+    },
+    "Follow": {
+      "title": "Follow",
+      "description": "A relationship representing that one user follows another user",
+      "type": "object",
+      "properties": {
+        "followerId": { "type": "string" },
+        "followingId": { "type": "string" }
+      },
+      "required": ["followerId", "followingId"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Primary user profiles"
+    },
+    "/posts/{postId}": {
+      "schema": "Post",
+      "description": "Public timeline posts"
+    },
+    "/posts/{postId}/comments/{commentId}": {
+      "schema": "Comment",
+      "description": "Comments attached to posts"
+    },
+    "/posts/{postId}/likes/{userId}": {
+      "schema": "Like",
+      "description": "Likes associated with posts"
+    },
+    "/follows/{followId}": {
+      "schema": "Follow",
+      "description": "Social following relationships"
+    }
+  }
+}
