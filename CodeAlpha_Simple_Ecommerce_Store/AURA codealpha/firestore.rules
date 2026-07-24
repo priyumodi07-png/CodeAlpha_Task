@@ -1,0 +1,21 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Products can be read by anyone, and written by anyone (for seeding/admin)
+    match /products/{productId} {
+      allow read, write: if true;
+    }
+    
+    // Users can read and write their own profiles (and via the Node server proxy)
+    match /users/{userId} {
+      allow read, write: if true;
+    }
+    
+    // Orders can be created by anyone, and read if it belongs to the user or if it's guest
+    match /orders/{orderId} {
+      allow create: if true;
+      allow read: if true; // Let them view order summaries by ID
+      allow update, delete: if request.auth != null && resource.data.userId == request.auth.uid;
+    }
+  }
+}

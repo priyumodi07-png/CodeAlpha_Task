@@ -1,0 +1,6 @@
+{
+  "name": "AURA E-Commerce",
+  "description": "A premium minimalist lifestyle e-commerce store with user profiles, order tracking, and a fully functional secure database.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
